@@ -1,0 +1,1033 @@
+/* =========================================================
+   RESPONSIVE.CSS
+   Mobile / Tablet / Desktop Adaptation
+========================================================= */
+
+
+/* =========================================================
+   LARGE TABLETS / SMALL LAPTOPS
+   1200px and below
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .container {
+        width: min(
+            calc(100% - 40px),
+            1120px
+        );
+    }
+
+
+    /* HEADER */
+
+    .main-navigation {
+        gap: 16px;
+    }
+
+    .main-navigation > a,
+    .nav-dropdown > a {
+        font-size: 12px;
+    }
+
+
+    /* HERO */
+
+    .hero-section {
+        min-height: 600px;
+    }
+
+    .hero-content {
+        max-width: 700px;
+    }
+
+
+    /* SERVICES */
+
+    .services-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    /* INDUSTRIES */
+
+    .industry-grid {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+}
+
+
+/* =========================================================
+   TABLETS
+   992px and below
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .container {
+        width: min(
+            calc(100% - 36px),
+            900px
+        );
+    }
+
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
+
+    .header-container {
+        min-height: 76px;
+    }
+
+
+    .main-navigation {
+        display: none;
+    }
+
+
+    .mobile-menu-button {
+        display: block;
+    }
+
+
+    .mobile-navigation {
+        display: none;
+
+        position: absolute;
+
+        left: 0;
+        right: 0;
+
+        top: 76px;
+
+        padding: 10px 18px 22px;
+
+        background:
+            var(--white);
+
+        border-top:
+            1px solid var(--border);
+
+        box-shadow:
+            var(--shadow-md);
+
+        z-index: 999;
+    }
+
+
+    .mobile-navigation.active {
+        display: flex;
+
+        flex-direction: column;
+    }
+
+
+    .mobile-navigation a {
+        padding: 14px 8px;
+
+        border-bottom:
+            1px solid var(--border);
+
+        color:
+            var(--primary);
+
+        font-size: 14px;
+
+        font-weight: 700;
+    }
+
+
+    .mobile-navigation a:last-child {
+        border-bottom: 0;
+    }
+
+
+    .mobile-navigation a:hover {
+        color:
+            var(--accent);
+    }
+
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    .hero-section {
+        min-height: 570px;
+    }
+
+
+    .hero-content {
+        padding:
+            75px 0;
+    }
+
+
+    .hero-content h1 {
+        font-size:
+            clamp(40px, 7vw, 62px);
+
+        letter-spacing:
+            -2px;
+    }
+
+
+    .hero-content p {
+        font-size: 16px;
+    }
+
+
+    /* =====================================================
+       TRUST BAR
+    ===================================================== */
+
+    .trust-container {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .trust-item {
+        min-height: 90px;
+    }
+
+
+    .trust-item:nth-child(2) {
+        border-right: 0;
+    }
+
+
+    .trust-item:nth-child(-n+2) {
+        border-bottom:
+            1px solid var(--border);
+    }
+
+
+    /* =====================================================
+       INTRO
+    ===================================================== */
+
+    .intro-grid {
+        grid-template-columns:
+            1fr;
+
+        gap: 20px;
+    }
+
+
+    /* =====================================================
+       SERVICES
+    ===================================================== */
+
+    .services-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .service-card {
+        min-height: 500px;
+    }
+
+
+    /* =====================================================
+       LIFECYCLE
+    ===================================================== */
+
+    .lifecycle-grid {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 12px;
+    }
+
+
+    .lifecycle-line {
+        display: none;
+    }
+
+
+    .lifecycle-step {
+        min-height: 150px;
+    }
+
+
+    /* =====================================================
+       WHY
+    ===================================================== */
+
+    .why-grid {
+        grid-template-columns:
+            1fr;
+
+        gap: 55px;
+    }
+
+
+    /* =====================================================
+       STANDARDS
+    ===================================================== */
+
+    .standards-inner {
+        grid-template-columns:
+            1fr;
+
+        gap: 45px;
+    }
+
+
+    /* =====================================================
+       VERIFICATION
+    ===================================================== */
+
+    .verification-container {
+        grid-template-columns:
+            1fr;
+
+        gap: 40px;
+    }
+
+
+    /* =====================================================
+       CTA
+    ===================================================== */
+
+    .cta-container {
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    .footer-grid {
+        grid-template-columns:
+            2fr 1fr 1fr;
+
+        gap: 40px;
+    }
+
+
+    .footer-company {
+        grid-column:
+            1 / -1;
+    }
+
+}
+
+
+/* =========================================================
+   LARGE MOBILE
+   768px and below
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .container {
+        width:
+            calc(100% - 30px);
+    }
+
+
+    /* =====================================================
+       HEADER
+    ===================================================== */
+
+    .header-container {
+        min-height: 70px;
+    }
+
+
+    .logo-area img {
+        width: 42px;
+        height: 42px;
+    }
+
+
+    .logo-text span {
+        font-size: 15px;
+    }
+
+
+    .logo-text small {
+        font-size: 8px;
+    }
+
+
+    .mobile-navigation {
+        top: 70px;
+    }
+
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    .hero-section {
+        min-height:
+            600px;
+    }
+
+
+    .hero-content {
+        padding:
+            70px 0;
+    }
+
+
+    .hero-eyebrow {
+        font-size: 9px;
+
+        letter-spacing:
+            1.6px;
+    }
+
+
+    .hero-content h1 {
+        font-size:
+            clamp(37px, 11vw, 54px);
+
+        line-height:
+            1.05;
+
+        letter-spacing:
+            -1.7px;
+    }
+
+
+    .hero-content p {
+        margin-top: 22px;
+
+        font-size: 15px;
+
+        line-height:
+            1.7;
+    }
+
+
+    .hero-buttons {
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+
+        max-width:
+            320px;
+    }
+
+
+    .btn {
+        min-height:
+            48px;
+    }
+
+
+    .hero-trust {
+        gap:
+            12px 20px;
+
+        margin-top:
+            28px;
+    }
+
+
+    /* =====================================================
+       TRUST BAR
+    ===================================================== */
+
+    .trust-container {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .trust-item {
+        min-height:
+            82px;
+
+        padding:
+            20px 10px;
+
+        border-right:
+            0;
+
+        border-bottom:
+            1px solid var(--border);
+    }
+
+
+    .trust-item:last-child {
+        border-bottom:
+            0;
+    }
+
+
+    /* =====================================================
+       GENERAL SECTIONS
+    ===================================================== */
+
+    .intro-section,
+    .services-section,
+    .industries-section,
+    .why-section,
+    .standards-preview {
+        padding:
+            75px 0;
+    }
+
+
+    .lifecycle-section {
+        padding:
+            75px 0;
+    }
+
+
+    .section-heading {
+        margin-bottom:
+            35px;
+    }
+
+
+    .section-heading h2,
+    .intro-content h2,
+    .why-section h2,
+    .standards-inner h2,
+    .cta-container h2 {
+        font-size:
+            31px;
+
+        letter-spacing:
+            -0.8px;
+    }
+
+
+    /* =====================================================
+       SERVICES
+    ===================================================== */
+
+    .services-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .service-card {
+        min-height:
+            470px;
+
+        padding:
+            28px;
+    }
+
+
+    /* =====================================================
+       LIFECYCLE
+    ===================================================== */
+
+    .lifecycle-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .lifecycle-step {
+        min-height:
+            auto;
+    }
+
+
+    /* =====================================================
+       INDUSTRIES
+    ===================================================== */
+
+    .industry-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap:
+            10px;
+    }
+
+
+    .industry-card {
+        min-height:
+            90px;
+
+        padding:
+            16px;
+
+        font-size:
+            12px;
+    }
+
+
+    /* =====================================================
+       WHY
+    ===================================================== */
+
+    .why-grid {
+        gap:
+            40px;
+    }
+
+
+    .why-point {
+        grid-template-columns:
+            42px 1fr;
+
+        gap:
+            12px;
+    }
+
+
+    /* =====================================================
+       STANDARDS
+    ===================================================== */
+
+    .standards-list {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    /* =====================================================
+       VERIFICATION
+    ===================================================== */
+
+    .verification-section {
+        padding:
+            70px 0;
+    }
+
+
+    .verification-box {
+        padding:
+            25px 20px;
+    }
+
+
+    .verification-input {
+        flex-direction:
+            column;
+    }
+
+
+    .verification-input input {
+        width:
+            100%;
+    }
+
+
+    .verification-input a {
+        min-height:
+            48px;
+    }
+
+
+    /* =====================================================
+       CTA
+    ===================================================== */
+
+    .cta-section {
+        padding:
+            70px 0;
+    }
+
+
+    .cta-buttons {
+        width:
+            100%;
+
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    .footer-grid {
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:
+            40px 25px;
+
+        padding:
+            60px 0;
+    }
+
+
+    .footer-company {
+        grid-column:
+            1 / -1;
+    }
+
+
+    .footer-bottom-inner {
+        min-height:
+            auto;
+
+        padding:
+            20px 0;
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+        gap:
+            12px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   480px and below
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .container {
+        width:
+            calc(100% - 24px);
+    }
+
+
+    /* =====================================================
+       LOGO
+    ===================================================== */
+
+    .logo-text span {
+        max-width:
+            180px;
+
+        overflow:
+            hidden;
+
+        text-overflow:
+            ellipsis;
+
+        white-space:
+            nowrap;
+    }
+
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    .hero-section {
+        min-height:
+            620px;
+    }
+
+
+    .hero-content {
+        padding:
+            65px 0;
+    }
+
+
+    .hero-content h1 {
+        font-size:
+            38px;
+    }
+
+
+    .hero-content p {
+        font-size:
+            14px;
+    }
+
+
+    .hero-buttons {
+        max-width:
+            100%;
+    }
+
+
+    .hero-trust {
+        display:
+            grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:
+            12px;
+    }
+
+
+    /* =====================================================
+       SECTION HEADINGS
+    ===================================================== */
+
+    .section-heading h2,
+    .intro-content h2,
+    .why-section h2,
+    .standards-inner h2,
+    .cta-container h2 {
+        font-size:
+            28px;
+    }
+
+
+    .section-heading p {
+        font-size:
+            14px;
+    }
+
+
+    /* =====================================================
+       SERVICE CARD
+    ===================================================== */
+
+    .service-card {
+        min-height:
+            460px;
+
+        padding:
+            25px;
+    }
+
+
+    .service-card h3 {
+        font-size:
+            20px;
+    }
+
+
+    .service-card > p {
+        font-size:
+            12px;
+    }
+
+
+    .service-card li {
+        font-size:
+            11px;
+    }
+
+
+    .card-link {
+        left:
+            25px;
+
+        bottom:
+            24px;
+    }
+
+
+    /* =====================================================
+       INDUSTRIES
+    ===================================================== */
+
+    .industry-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .industry-card {
+        min-height:
+            75px;
+    }
+
+
+    /* =====================================================
+       WHY
+    ===================================================== */
+
+    .why-point {
+        padding:
+            20px 0;
+    }
+
+
+    .why-point h3 {
+        font-size:
+            16px;
+    }
+
+
+    .why-point p {
+        font-size:
+            12px;
+    }
+
+
+    /* =====================================================
+       STANDARDS
+    ===================================================== */
+
+    .standards-list {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+
+    .standards-list span {
+        min-height:
+            60px;
+
+        font-size:
+            12px;
+    }
+
+
+    /* =====================================================
+       VERIFICATION
+    ===================================================== */
+
+    .verification-box {
+        padding:
+            22px 17px;
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    .footer-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .footer-company {
+        grid-column:
+            auto;
+    }
+
+
+    .footer-bottom-inner {
+        align-items:
+            flex-start;
+    }
+
+
+    .footer-bottom-inner > div {
+        flex-wrap:
+            wrap;
+
+        gap:
+            10px 18px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES
+   360px and below
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .container {
+        width:
+            calc(100% - 20px);
+    }
+
+
+    .logo-text span {
+        font-size:
+            13px;
+
+        max-width:
+            150px;
+    }
+
+
+    .logo-text small {
+        display:
+            none;
+    }
+
+
+    .hero-content h1 {
+        font-size:
+            34px;
+    }
+
+
+    .hero-content p {
+        font-size:
+            13px;
+    }
+
+
+    .hero-trust {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .service-card {
+        min-height:
+            450px;
+    }
+
+
+    .section-heading h2,
+    .intro-content h2,
+    .why-section h2,
+    .standards-inner h2,
+    .cta-container h2 {
+        font-size:
+            25px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+   For users who prefer reduced animation
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior:
+            auto;
+    }
+
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+
+    }
+
+}
