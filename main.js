@@ -1,0 +1,20 @@
+document.addEventListener("DOMContentLoaded",()=>{
+const c=SITE_CONFIG;
+for(const e of document.querySelectorAll("[data-company]"))e.textContent=c.company.name;
+for(const e of document.querySelectorAll("[data-short]"))e.textContent=c.company.shortName;
+for(const e of document.querySelectorAll("[data-tagline]"))e.textContent=c.company.tagline;
+for(const e of document.querySelectorAll("[data-email]")){e.textContent=c.contact.email;e.href="mailto:"+c.contact.email}
+for(const e of document.querySelectorAll("[data-phone]")){e.textContent=c.contact.phone;e.href="tel:"+c.contact.phone.replace(/\s/g,"")}
+for(const e of document.querySelectorAll("[data-address]"))e.textContent=c.contact.address;
+for(const e of document.querySelectorAll("[data-year]"))e.textContent=new Date().getFullYear();
+document.querySelectorAll("[data-logo]").forEach(e=>{e.src=c.company.logo;e.alt=c.company.name});
+document.title=c.company.name+" | "+c.company.tagline;
+const grid=document.querySelector("#industry-grid"); if(grid)c.industries.forEach((x,i)=>grid.innerHTML+=`<article class="industry-card"><div class="service-number">${String(i+1).padStart(2,"0")}</div><h3>${x[0]}</h3><p>${x[1]}</p></article>`);
+const sg=document.querySelector("#service-grid"); if(sg)Object.entries(c.services).forEach(([key,v])=>v.items.forEach((x,i)=>sg.innerHTML+=`<article class="card"><div class="service-number">${key.toUpperCase()} · ${String(i+1).padStart(2,"0")}</div><h3>${x[0]}</h3><p>${x[1]}</p><a href="service-detail.html?cat=${key}&i=${i}" style="display:inline-block;margin-top:15px;font-weight:900;color:var(--secondary)">View service →</a></article>`));
+const detail=document.querySelector("#service-detail"); if(detail){const p=new URLSearchParams(location.search),cat=p.get("cat")||"inspection",i=Number(p.get("i")||0),x=c.services[cat]?.items[i]; if(x){detail.innerHTML=`<div class="eyebrow">${c.services[cat].title}</div><h1>${x[0]}</h1><p>${x[1]}</p><div class="subgrid">${x.slice(2).map(s=>`<div class="sub">${s}</div>`).join("")}</div>`}}
+const list=document.querySelector("#service-category-list"); if(list)Object.entries(c.services).forEach(([k,v])=>list.innerHTML+=`<section class="detail"><div class="detail-grid"><div><div class="eyebrow">Service Category</div><h2>${v.title}</h2><p class="lead">Structured technical support aligned with applicable standards, specifications, purchase orders and inspection plans.</p></div><div class="cards" style="grid-template-columns:repeat(2,1fr);margin-top:0">${v.items.map((x,i)=>`<article class="card"><h3>${x[0]}</h3><p>${x[1]}</p><a href="service-detail.html?cat=${k}&i=${i}" style="display:inline-block;margin-top:12px;font-weight:900;color:var(--secondary)">Details →</a></article>`).join("")}</div></div></section>`);
+const std=document.querySelector("#standards-grid"); if(std)c.standards.forEach(s=>std.innerHTML+=`<article class="card"><h3>${s}</h3><p>Applicable where specified by the client, purchase order, project documentation or inspection scope.</p></article>`);
+const menu=document.querySelector(".mobile"); if(menu)menu.onclick=()=>document.body.classList.toggle("mobile-open");
+const form=document.querySelector("#enquiry-form"); if(form)form.addEventListener("submit",e=>{e.preventDefault();const d=new FormData(form);const subject=encodeURIComponent("Website Enquiry - "+(d.get("name")||""));const body=encodeURIComponent([...d.entries()].map(x=>x[0]+": "+x[1]).join("\n"));location.href=`mailto:${c.contact.email}?subject=${subject}&body=${body}`});
+const vf=document.querySelector("#verify-form"); if(vf)vf.addEventListener("submit",e=>{e.preventDefault();const r=document.querySelector("#verify-result");r.style.display="block";r.innerHTML="<strong>Verification request received.</strong><br>This demonstration verifier is ready to be connected to your certificate database when your certificate records are available."});
+});
