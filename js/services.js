@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+/* =========================================================
+   INITIALIZE SERVICES
+========================================================= */
+
 function initializeServices() {
 
     if (
@@ -31,6 +35,8 @@ function initializeServices() {
 
     loadServiceLists();
 
+    loadServiceMegaMenu();
+
 }
 
 
@@ -51,77 +57,100 @@ function loadServiceOverview() {
 
     }
 
-    serviceCards.forEach(
-        function (card) {
+    serviceCards.forEach(function (card) {
 
-            const category =
-                card.dataset.serviceCategory;
+        const category =
+            card.dataset.serviceCategory;
 
-            const service =
-                SITE_CONFIG.services[category];
+        const service =
+            SITE_CONFIG.services[category];
 
-            if (!service) {
+        if (!service) {
 
-                return;
+            return;
 
-            }
+        }
 
-            const title =
-                card.querySelector(
-                    "[data-service-title]"
-                );
 
-            const description =
-                card.querySelector(
-                    "[data-service-description]"
-                );
+        /* SERVICE TITLE */
 
-            if (title) {
+        const title =
+            card.querySelector(
+                "[data-service-title]"
+            );
 
-                title.textContent =
-                    service.title;
+        if (title) {
 
-            }
+            title.textContent =
+                service.title;
 
-            if (description) {
+        }
 
-                description.textContent =
-                    service.description;
 
-            }
+        /* SERVICE DESCRIPTION */
 
-            const list =
-                card.querySelector(
-                    "[data-service-list]"
-                );
+        const description =
+            card.querySelector(
+                "[data-service-description]"
+            );
 
-            if (
-                list &&
-                Array.isArray(service.services)
-            ) {
+        if (
+            description &&
+            service.description
+        ) {
 
-                list.innerHTML = "";
+            description.textContent =
+                service.description;
 
-                service.services.forEach(
-                    function (item) {
+        }
 
-                        const li =
-                            document.createElement(
-                                "li"
-                            );
+
+        /* SERVICE LIST */
+
+        const list =
+            card.querySelector(
+                "[data-service-list]"
+            );
+
+        if (
+            list &&
+            Array.isArray(service.services)
+        ) {
+
+            list.innerHTML = "";
+
+            service.services.forEach(
+                function (item) {
+
+                    const li =
+                        document.createElement(
+                            "li"
+                        );
+
+                    if (
+                        typeof item === "object"
+                    ) {
+
+                        li.textContent =
+                            item.title;
+
+                    }
+
+                    else {
 
                         li.textContent =
                             item;
 
-                        list.appendChild(li);
-
                     }
-                );
 
-            }
+                    list.appendChild(li);
+
+                }
+            );
 
         }
-    );
+
+    });
 
 }
 
@@ -132,57 +161,53 @@ function loadServiceOverview() {
 
 function loadServiceNavigation() {
 
-    const navigationContainers =
+    const containers =
         document.querySelectorAll(
             "[data-service-navigation]"
         );
 
-    if (!navigationContainers.length) {
+    if (!containers.length) {
 
         return;
 
     }
 
-    navigationContainers.forEach(
-        function (container) {
+    containers.forEach(function (container) {
 
-            container.innerHTML = "";
+        container.innerHTML = "";
 
-            Object.keys(
-                SITE_CONFIG.services
-            ).forEach(
-                function (category) {
+        Object.keys(
+            SITE_CONFIG.services
+        ).forEach(function (category) {
 
-                    const service =
-                        SITE_CONFIG.services[
-                            category
-                        ];
+            const service =
+                SITE_CONFIG.services[
+                    category
+                ];
 
-                    const link =
-                        document.createElement(
-                            "a"
-                        );
+            const link =
+                document.createElement(
+                    "a"
+                );
 
-                    link.href =
-                        "services.html#" +
-                        category;
+            link.href =
+                "services.html#" +
+                category;
 
-                    link.textContent =
-                        service.title;
+            link.textContent =
+                service.title;
 
-                    link.classList.add(
-                        "service-nav-link"
-                    );
-
-                    container.appendChild(
-                        link
-                    );
-
-                }
+            link.classList.add(
+                "service-nav-link"
             );
 
-        }
-    );
+            container.appendChild(
+                link
+            );
+
+        });
+
+    });
 
 }
 
@@ -204,83 +229,95 @@ function loadServiceLists() {
 
     }
 
-    containers.forEach(
-        function (container) {
+    containers.forEach(function (container) {
 
-            const category =
-                container.dataset
-                    .serviceListCategory;
+        const category =
+            container.dataset
+                .serviceListCategory;
 
-            const service =
-                SITE_CONFIG.services[
-                    category
-                ];
+        const service =
+            SITE_CONFIG.services[
+                category
+            ];
 
-            if (!service) {
+        if (!service) {
 
-                return;
-
-            }
-
-            container.innerHTML = "";
-
-            if (
-                !Array.isArray(
-                    service.services
-                )
-            ) {
-
-                return;
-
-            }
-
-            service.services.forEach(
-                function (serviceName) {
-
-                    const item =
-                        document.createElement(
-                            "li"
-                        );
-
-                    item.textContent =
-                        serviceName;
-
-                    container.appendChild(
-                        item
-                    );
-
-                }
-            );
+            return;
 
         }
-    );
+
+        container.innerHTML = "";
+
+        if (
+            !Array.isArray(
+                service.services
+            )
+        ) {
+
+            return;
+
+        }
+
+        service.services.forEach(
+            function (item) {
+
+                const li =
+                    document.createElement(
+                        "li"
+                    );
+
+                if (
+                    typeof item === "object"
+                ) {
+
+                    li.textContent =
+                        item.title;
+
+                }
+
+                else {
+
+                    li.textContent =
+                        item;
+
+                }
+
+                container.appendChild(
+                    li
+                );
+
+            }
+        );
+
+    });
 
 }
 
 
 /* =========================================================
-   SERVICE DROPDOWN / MEGA MENU
+   SERVICE MEGA MENU
 ========================================================= */
 
 function loadServiceMegaMenu() {
 
-    const menu =
-        document.querySelector(
+    const menus =
+        document.querySelectorAll(
             "[data-service-mega-menu]"
         );
 
-    if (!menu) {
+    if (!menus.length) {
 
         return;
 
     }
 
-    menu.innerHTML = "";
+    menus.forEach(function (menu) {
 
-    Object.keys(
-        SITE_CONFIG.services
-    ).forEach(
-        function (category) {
+        menu.innerHTML = "";
+
+        Object.keys(
+            SITE_CONFIG.services
+        ).forEach(function (category) {
 
             const service =
                 SITE_CONFIG.services[
@@ -296,6 +333,9 @@ function loadServiceMegaMenu() {
                 "mega-menu-column"
             );
 
+
+            /* COLUMN TITLE */
+
             const heading =
                 document.createElement(
                     "h3"
@@ -308,24 +348,17 @@ function loadServiceMegaMenu() {
                 heading
             );
 
+
+            /* SERVICE ITEMS */
+
             if (
                 Array.isArray(
                     service.services
                 )
             ) {
 
-                const list =
-                    document.createElement(
-                        "ul"
-                    );
-
                 service.services.forEach(
-                    function (serviceName) {
-
-                        const item =
-                            document.createElement(
-                                "li"
-                            );
+                    function (item) {
 
                         const link =
                             document.createElement(
@@ -337,21 +370,15 @@ function loadServiceMegaMenu() {
                             category;
 
                         link.textContent =
-                            serviceName;
+                            typeof item === "object"
+                                ? item.title
+                                : item;
 
-                        item.appendChild(
+                        column.appendChild(
                             link
                         );
 
-                        list.appendChild(
-                            item
-                        );
-
                     }
-                );
-
-                column.appendChild(
-                    list
                 );
 
             }
@@ -360,8 +387,160 @@ function loadServiceMegaMenu() {
                 column
             );
 
+        });
+
+    });
+
+}
+
+
+/* =========================================================
+   DETAILED SERVICE CONTENT
+========================================================= */
+
+function loadDetailedServices() {
+
+    const containers =
+        document.querySelectorAll(
+            "[data-detailed-services]"
+        );
+
+    if (!containers.length) {
+
+        return;
+
+    }
+
+    containers.forEach(function (container) {
+
+        const category =
+            container.dataset
+                .detailedServices;
+
+        const service =
+            SITE_CONFIG.services[
+                category
+            ];
+
+        if (!service) {
+
+            return;
+
         }
-    );
+
+        container.innerHTML = "";
+
+
+        if (
+            !Array.isArray(
+                service.services
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        service.services.forEach(
+            function (item) {
+
+                const card =
+                    document.createElement(
+                        "article"
+                    );
+
+                card.classList.add(
+                    "detail-card"
+                );
+
+
+                /* TITLE */
+
+                const title =
+                    document.createElement(
+                        "h3"
+                    );
+
+                title.textContent =
+                    typeof item === "object"
+                        ? item.title
+                        : item;
+
+                card.appendChild(
+                    title
+                );
+
+
+                /* DESCRIPTION */
+
+                if (
+                    typeof item === "object" &&
+                    item.description
+                ) {
+
+                    const description =
+                        document.createElement(
+                            "p"
+                        );
+
+                    description.textContent =
+                        item.description;
+
+                    card.appendChild(
+                        description
+                    );
+
+                }
+
+
+                /* SUB-SERVICES */
+
+                if (
+                    typeof item === "object" &&
+                    Array.isArray(
+                        item.subServices
+                    )
+                ) {
+
+                    const list =
+                        document.createElement(
+                            "ul"
+                        );
+
+                    item.subServices.forEach(
+                        function (subService) {
+
+                            const li =
+                                document.createElement(
+                                    "li"
+                                );
+
+                            li.textContent =
+                                subService;
+
+                            list.appendChild(
+                                li
+                            );
+
+                        }
+                    );
+
+                    card.appendChild(
+                        list
+                    );
+
+                }
+
+
+                container.appendChild(
+                    card
+                );
+
+            }
+        );
+
+    });
 
 }
 
@@ -395,72 +574,130 @@ function searchServices(
 
     const results = [];
 
+
     Object.keys(
         SITE_CONFIG.services
-    ).forEach(
-        function (category) {
+    ).forEach(function (category) {
 
-            const service =
-                SITE_CONFIG.services[
-                    category
-                ];
+        const service =
+            SITE_CONFIG.services[
+                category
+            ];
 
-            if (
-                service.title
-                    .toLowerCase()
-                    .includes(term)
-            ) {
 
-                results.push({
-                    category:
-                        category,
+        /* CATEGORY SEARCH */
 
-                    title:
-                        service.title,
+        if (
+            service.title &&
+            service.title
+                .toLowerCase()
+                .includes(term)
+        ) {
 
-                    type:
-                        "category"
+            results.push({
 
-                });
+                category:
+                    category,
 
-            }
+                title:
+                    service.title,
 
-            if (
-                Array.isArray(
-                    service.services
-                )
-            ) {
+                type:
+                    "category"
 
-                service.services.forEach(
-                    function (serviceName) {
-
-                        if (
-                            serviceName
-                                .toLowerCase()
-                                .includes(term)
-                        ) {
-
-                            results.push({
-                                category:
-                                    category,
-
-                                title:
-                                    serviceName,
-
-                                type:
-                                    "service"
-
-                            });
-
-                        }
-
-                    }
-                );
-
-            }
+            });
 
         }
-    );
+
+
+        /* SERVICE SEARCH */
+
+        if (
+            Array.isArray(
+                service.services
+            )
+        ) {
+
+            service.services.forEach(
+                function (item) {
+
+                    const title =
+                        typeof item === "object"
+                            ? item.title
+                            : item;
+
+
+                    if (
+                        title &&
+                        title
+                            .toLowerCase()
+                            .includes(term)
+                    ) {
+
+                        results.push({
+
+                            category:
+                                category,
+
+                            title:
+                                title,
+
+                            type:
+                                "service"
+
+                        });
+
+                    }
+
+
+                    /* SUB-SERVICE SEARCH */
+
+                    if (
+                        typeof item === "object" &&
+                        Array.isArray(
+                            item.subServices
+                        )
+                    ) {
+
+                        item.subServices.forEach(
+                            function (subService) {
+
+                                if (
+                                    subService
+                                        .toLowerCase()
+                                        .includes(term)
+                                ) {
+
+                                    results.push({
+
+                                        category:
+                                            category,
+
+                                        parentService:
+                                            title,
+
+                                        title:
+                                            subService,
+
+                                        type:
+                                            "sub-service"
+
+                                    });
+
+                                }
+
+                            }
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+    });
+
 
     return results;
 
@@ -477,27 +714,44 @@ function getServiceCount() {
 
     Object.keys(
         SITE_CONFIG.services
-    ).forEach(
-        function (category) {
+    ).forEach(function (category) {
 
-            const service =
-                SITE_CONFIG.services[
-                    category
-                ];
+        const service =
+            SITE_CONFIG.services[
+                category
+            ];
 
-            if (
-                Array.isArray(
-                    service.services
-                )
-            ) {
+        if (
+            !Array.isArray(
+                service.services
+            )
+        ) {
 
-                count +=
-                    service.services.length;
-
-            }
+            return;
 
         }
-    );
+
+        service.services.forEach(
+            function (item) {
+
+                count++;
+
+                if (
+                    typeof item === "object" &&
+                    Array.isArray(
+                        item.subServices
+                    )
+                ) {
+
+                    count +=
+                        item.subServices.length;
+
+                }
+
+            }
+        );
+
+    });
 
     return count;
 
@@ -505,14 +759,60 @@ function getServiceCount() {
 
 
 /* =========================================================
-   INITIALIZE OPTIONAL FEATURES
+   GET SERVICE CATEGORY
+========================================================= */
+
+function getServiceCategory(
+    category
+) {
+
+    if (
+        typeof SITE_CONFIG === "undefined" ||
+        !SITE_CONFIG.services
+    ) {
+
+        return null;
+
+    }
+
+    return SITE_CONFIG.services[
+        category
+    ] || null;
+
+}
+
+
+/* =========================================================
+   GET ALL SERVICE CATEGORIES
+========================================================= */
+
+function getAllServiceCategories() {
+
+    if (
+        typeof SITE_CONFIG === "undefined" ||
+        !SITE_CONFIG.services
+    ) {
+
+        return [];
+
+    }
+
+    return Object.keys(
+        SITE_CONFIG.services
+    );
+
+}
+
+
+/* =========================================================
+   INITIALIZE DETAILED SERVICES
 ========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
     function () {
 
-        loadServiceMegaMenu();
+        loadDetailedServices();
 
     }
 );
